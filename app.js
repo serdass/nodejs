@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Rutas
 app.get('/', (req, res) => {
-  res.send('¡La aplicación Node.js está funcionando correctamente!');
+  res.send('¡La aplicación Node.js está funcionando correctamente! una vez más');
 });
 
 // Manejo de errores
