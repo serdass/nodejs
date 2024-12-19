@@ -4,9 +4,11 @@
   "description": "Un proyecto Node.js",
   "main": "app.js",
   "dependencies": {
+    "botbuilder": "^4.23.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "pm2": "^5.4.3"
+    "pm2": "^5.4.3",
+    "restify": "^8.0.0"
   },
   "scripts": {
     "start": "node app.js"

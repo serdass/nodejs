@@ -1,28 +1,36 @@
-// Importar librerías necesarias
+require('dotenv').config();
+const { MainDialog } = require('./mainDialog');
+const { BotFrameworkAdapter } = require('botbuilder');
 const express = require('express');
-require('dotenv').config(); // Carga las variables de entorno
 
-// Crear una aplicación Express
+// Crear la aplicación de express
 const app = express();
-
-// Configuración básica
-const PORT = process.env.PORT || 3000;
-
-// Middleware para analizar JSON
 app.use(express.json());
 
-// Rutas
-app.get('/', (req, res) => {
-  res.send('¡La aplicación Node.js está funcionando correctamente! una vez más');
+// Configuración de Credenciales
+const adapter = new BotFrameworkAdapter({
+    appId: process.env.MicrosoftAppId,
+    appPassword: process.env.MicrosoftAppPassword
 });
 
-// Manejo de errores
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('¡Algo salió mal!');
+// Manejo de Errores
+adapter.onTurnError = async (context, error) => {
+    console.error(`\n [onTurnError] Error: ${error}`);
+    await context.sendActivity('Ocurrió un error.');
+};
+
+// Instancia de nuestro diálogo principal
+const bot = new MainDialog();
+
+// Ruta para escuchar mensajes y ejecutar el bot
+app.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async (context) => {
+        await bot.run(context);  // Ejecuta el diálogo principal del bot
+    });
 });
 
-// Iniciar el servidor
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
+// Configuración del puerto y inicio del servidor
+const port = process.env.PORT || 3978;
+app.listen(port, () => {
+    console.log(`\nBot está escuchando en el puerto ${port}`);
 });
