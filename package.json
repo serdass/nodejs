@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "pm2": "^5.4.3"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
