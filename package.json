@@ -1,9 +1,13 @@
 {
   "dependencies": {
     "dotenv": "^16.4.7",
+    "express": "^4.21.2",
     "pm2": "^5.4.3"
   },
   "scripts": {
     "start": "node app.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
