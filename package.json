@@ -1,4 +1,8 @@
 {
+  "name": "mi-proyecto",
+  "version": "1.0.0",
+  "description": "Un proyecto Node.js",
+  "main": "app.js",
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
@@ -9,5 +13,6 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "license": "MIT"
 }
